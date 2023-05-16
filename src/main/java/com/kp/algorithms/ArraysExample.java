@@ -3,6 +3,7 @@ package com.kp.algorithms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class ArraysExample {
 
@@ -20,5 +21,19 @@ public class ArraysExample {
       }
       max.add(axu);
       return Collections.max(max);
+   }
+
+   public Integer sumInterges(List<Integer> integers){
+      if (Objects.isNull(integers)){
+         throw new IllegalArgumentException("List can't be null");
+      }
+      return integers.stream().filter(Objects::nonNull).mapToInt(Integer::intValue).sum();
+   }
+
+   public boolean isListContaintNulls(List<Integer> integers){
+      if (Objects.isNull(integers)){
+         return true;
+      }
+      return integers.stream().anyMatch(Objects::isNull);
    }
 }
