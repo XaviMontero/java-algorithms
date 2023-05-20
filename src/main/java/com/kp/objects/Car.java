@@ -23,5 +23,20 @@ public class Car {
       this.name = Objects.requireNonNull(name, "the name cannot be null");
 
       this.color = Objects.requireNonNull(color, "the color cannot be null");
+
    }
+
+   public Car(String name) {
+      this.name = Car.requireNonNullElseThrow(name, new IllegalArgumentException("Name cannot be null"));
+   }
+
+   public static <T, X extends Throwable> T requireNonNullElseThrow(T obj, X exception) throws X {
+
+      if (obj == null) {
+         throw exception;
+      }
+
+      return obj;
+   }
+
 }
