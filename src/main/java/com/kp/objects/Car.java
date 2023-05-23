@@ -1,14 +1,15 @@
 package com.kp.objects;
 
+import java.awt.*;
 import java.util.Objects;
 
 public class Car {
 
-   private final String name;
+   private String name;
 
-   private final String color;
+   private Color color;
 
-   public Car(String name, String color) {
+   public Car(String name, Color color) {
 
       //AFTER
       if (name == null) {
@@ -22,7 +23,7 @@ public class Car {
       //NOW
       this.name = Objects.requireNonNull(name, "the name cannot be null");
 
-      this.color = Objects.requireNonNull(color, "the color cannot be null");
+      // this.color = Objects.requireNonNull(color, "the color cannot be null");
 
    }
 
