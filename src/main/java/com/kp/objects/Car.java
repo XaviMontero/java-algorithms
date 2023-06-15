@@ -40,4 +40,20 @@ public class Car {
       return obj;
    }
 
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) {
+         return true;
+      }
+      if (!(o instanceof Car)) {
+         return false;
+      }
+      Car car = (Car) o;
+      return Objects.equals(name, car.name) && Objects.equals(color, car.color);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(name, color);
+   }
 }
