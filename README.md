@@ -1,4 +1,4 @@
-# Project Title: LeetCode Solutions and Learning Algorithms
+# LeetCode Solutions and Learning Algorithms
 
 This project contains solutions to various LeetCode problems and implementations of learning algorithms by Xavi Montero.
 
