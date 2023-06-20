@@ -8,7 +8,7 @@ import com.kp.objects.Range;
 
 public class Solution {
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws CloneNotSupportedException {
       ArraysExample arraysExample = new ArraysExample();
       int[] nums = new int[0];
       arraysExample.findMaxConsecutiveOnes(nums);
@@ -19,6 +19,10 @@ public class Solution {
       Car card2 = new Car("Jetour", Color.blue);
 
       if (Objects.equals(card1, card2)) {
+         System.out.println("The same objects");
+      }
+      Car clone = card1.clone();
+      if (Objects.equals(clone, card1)) {
          System.out.println("The same objects");
       }
    }

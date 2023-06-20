@@ -3,7 +3,7 @@ package com.kp.objects;
 import java.awt.*;
 import java.util.Objects;
 
-public class Car {
+public class Car implements Cloneable {
 
    private String name;
 
@@ -55,5 +55,10 @@ public class Car {
    @Override
    public int hashCode() {
       return Objects.hash(name, color);
+   }
+
+   @Override
+   public Car clone() throws CloneNotSupportedException {
+      return (Car) super.clone();
    }
 }
