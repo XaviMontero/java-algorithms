@@ -25,5 +25,13 @@ public class Solution {
       if (Objects.equals(clone, card1)) {
          System.out.println("The same objects");
       }
+      switch (card1.getName()) {
+         case "Jetour", "Honda" -> new Car("Jetour", Color.blue);
+         case "Che", "mand" -> new Car("Che", Color.blue);
+         case "Che" -> {
+            System.out.println("Creating a SnookerPlayer ...");
+            break new Car("Che", Color.blue);
+         }
+      }
    }
 }

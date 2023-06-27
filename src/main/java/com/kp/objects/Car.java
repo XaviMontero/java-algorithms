@@ -61,4 +61,12 @@ public class Car implements Cloneable {
    public Car clone() throws CloneNotSupportedException {
       return (Car) super.clone();
    }
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
 }
