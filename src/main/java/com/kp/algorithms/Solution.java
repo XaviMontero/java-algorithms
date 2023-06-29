@@ -2,6 +2,8 @@ package com.kp.algorithms;
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import com.kp.objects.Car;
@@ -38,5 +40,9 @@ public class Solution {
 
       LocalDate localDate = LocalDate.now();
       LocalDate localDate1 = LocalDate.parse("2020-06-01");
+
+      DateTimeFormatter zonedDateTimeFormatter
+            = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm:ssXXXXX '['VV']'")
+                               .withZone(ZoneId.of("Europe/Paris"));
    }
 }
