@@ -3,6 +3,7 @@ package com.kp.algorithms;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -44,5 +45,18 @@ public class Solution {
       DateTimeFormatter zonedDateTimeFormatter
             = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm:ssXXXXX '['VV']'")
                                .withZone(ZoneId.of("Europe/Paris"));
+
+      ZonedDateTime zonedDateTime
+            = ZonedDateTime.parse("2020-06-01T10:15:30+09:00[Asia/Tokyo]");
+
+      // yyyy-MM-dd
+      LocalDate localDate3 = LocalDate.now();
+      DateTimeFormatter formatterLocalDate
+            = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+      String stringLD = formatterLocalDate.format(localDate);
+
+      // or shortly
+      String stringLD5 = LocalDate.now()
+                                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
    }
 }
