@@ -1,10 +1,12 @@
 package com.kp.algorithms;
 
 import java.awt.*;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 import com.kp.objects.Car;
@@ -58,5 +60,14 @@ public class Solution {
       // or shortly
       String stringLD5 = LocalDate.now()
                                  .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+      Instant twoHourLater = Instant.now().plus(2, ChronoUnit.HOURS);
+      Instant tenMinutesEarlier = Instant.now()
+                                         .minus(10, ChronoUnit.MINUTES);
+
+      Instant timestamp1 = Instant.now();
+      Instant timestamp2 = timestamp1.plusSeconds(10);
+      // 10 seconds
+      long difference = timestamp1.until(timestamp2, ChronoUnit.SECONDS);
    }
 }
