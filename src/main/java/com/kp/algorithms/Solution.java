@@ -3,10 +3,12 @@ package com.kp.algorithms;
 import java.awt.*;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Objects;
 
 import com.kp.objects.Car;
@@ -69,5 +71,15 @@ public class Solution {
       Instant timestamp2 = timestamp1.plusSeconds(10);
       // 10 seconds
       long difference = timestamp1.until(timestamp2, ChronoUnit.SECONDS);
+
+      LocalDate date = LocalDate.of(2019, Month.FEBRUARY, 27);
+
+      // 2019-02-01
+      LocalDate firstDayOfFeb
+            = date.with(TemporalAdjusters.firstDayOfMonth());
+
+      // 2019-02-28
+      LocalDate lastDayOfFeb
+            = date.with(TemporalAdjusters.lastDayOfMonth());
    }
 }
