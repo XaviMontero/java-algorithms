@@ -34,14 +34,7 @@ public class Solution {
          System.out.println("The same objects");
       }
 
-      switch (card1.getName()) {
-         case "Jetour", "Honda" -> new Car("Jetour", Color.blue);
-         case "Che", "mand" -> new Car("Che", Color.blue);
-         case "Che" -> {
-            System.out.println("Creating a SnookerPlayer ...");
-            break new Car("Che", Color.blue);
-         }
-      }
+
 
       LocalDate localDate = LocalDate.now();
       LocalDate localDate1 = LocalDate.parse("2020-06-01");
