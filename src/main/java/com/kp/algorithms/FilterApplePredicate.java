@@ -14,7 +14,7 @@ import com.kp.objects.apple.print.ApplePrintPredicate;
 
 public class FilterApplePredicate {
 
-   public static void main(String[] args) {
+   public void main(String[] args) {
       List<Apple> inventory = new ArrayList<>();
       inventory.add(new Apple(GREEN, 100));
       inventory.add(new Apple(RED, 200));
@@ -26,6 +26,16 @@ public class FilterApplePredicate {
       ApplePredicate applePredicate = new AppleWeightPredicate();
       List<Apple> heavyApples = filterApplePredicate.filterApples(inventory, applePredicate);
       System.out.println(printApples(heavyApples, new ApplePrettyPrintPredicate()));
+
+      //anonymous class
+      List<Apple> redApples = filterApplePredicate.filterApples(inventory, new ApplePredicate() {
+         public boolean test(Apple apple) {
+            return RED.equals(apple.getColor());
+         }
+      });
+
+      //anonymous class using lambda
+      List<Apple> redApples2 = filterApples(inventory, (Apple apple) -> RED.equals(apple.getColor()));
    }
 
 
