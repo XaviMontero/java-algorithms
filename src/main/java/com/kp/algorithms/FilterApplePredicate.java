@@ -25,7 +25,7 @@ public class FilterApplePredicate {
 
       FilterApplePredicate filterApplePredicate = new FilterApplePredicate();
       Predicate applePredicate = new AppleWeightPredicate();
-      List<Apple> heavyApples = filterApplePredicate.filterApples(inventory, applePredicate);
+      List<Apple> heavyApples = filterApples(inventory, applePredicate);
       System.out.println(printApples(heavyApples, new ApplePrettyPrintPredicate()));
 
       //Steam Using in java

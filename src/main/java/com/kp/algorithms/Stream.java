@@ -33,6 +33,7 @@ public class Stream {
             .map(Dish::getName)
             .collect(Collectors.toList());
       System.out.println(dishesNameHighCalories);
+
    }
 
 }
