@@ -15,4 +15,7 @@ public class Dish {
 
    private Boolean vegetarian;
 
+   public static boolean isVegetarian(Dish dish) {
+      return dish.getVegetarian();
+   }
 }
