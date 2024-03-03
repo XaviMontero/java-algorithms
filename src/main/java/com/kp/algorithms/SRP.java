@@ -1,6 +1,7 @@
 package com.kp.algorithms;
 
 import com.kp.objects.book.Book;
+import com.kp.objects.book.Printer;
 import com.kp.objects.book.PrinterHtmlImpl;
 import com.kp.objects.book.PrinterTxtImpl;
 
@@ -11,8 +12,8 @@ public class SRP {
 
       String text = book.printBook();
 
-      PrinterTxtImpl printer = new PrinterTxtImpl();
-      PrinterHtmlImpl printerHtml = new PrinterHtmlImpl();
+      Printer printer = new PrinterTxtImpl();
+      Printer printerHtml = new PrinterHtmlImpl();
       printer.print(text);
       printerHtml.print(text);
 
