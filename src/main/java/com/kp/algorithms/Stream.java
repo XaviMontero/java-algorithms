@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.kp.objects.example.Trader;
+import com.kp.objects.example.Transaction;
 import com.kp.objects.restaurant.Dish;
 
 public class Stream {
@@ -54,18 +56,62 @@ public class Stream {
 
       List<Integer> squares = numbers1.stream().map(i -> i * i).collect(Collectors.toList());
 
-      List<int[]> pairs = numbers1
-            .stream()
-            .flatMap(i -> numbers2.stream().map(j -> new int[] { i, j }))
-            .collect(Collectors.toList());
+      List<int[]> pairs = numbers1.stream().flatMap(i -> numbers2.stream().map(j -> new int[] { i, j })).collect(Collectors.toList());
 
       List<int[]> pairsDiv = numbers1
             .stream()
             .flatMap(i -> numbers2.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[] { i, j }))
             .collect(Collectors.toList());
 
+      Boolean dishesIsHealting = dishes.stream().allMatch(dish -> dish.getCalories() < 1000);
+      System.out.println(dishesIsHealting);
+      Dish getDish = dishes.stream().filter(Dish::isVegetarian).findAny().orElse(null);
 
+      List<Integer> listNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+      Integer sum = listNumbers.stream().reduce(0, Integer::sum);
+      System.out.println(sum);
+      Integer max = listNumbers.stream().reduce(0, Integer::max);
+      System.out.println(max);
+      Integer min = listNumbers.stream().reduce(0, Integer::min);
+      System.out.println(min);
+      Integer count = listNumbers.stream().map(n -> 1).reduce(0, Integer::sum);
+      System.out.println(count);
+      Integer mul = listNumbers.stream().reduce(1, (a, b) -> a * b);
+      System.out.println(mul);
+      result();
 
    }
 
+   private static void result() {
+      List<Transaction> transactions = getExam();
+      List<Transaction> getTransaction2011 = transactions
+            .stream()
+            .filter(x -> x.getYear() == 2011)
+            .sorted(Comparator.comparing(Transaction::getValue).reversed())
+            .collect(Collectors.toList());
+      getTransaction2011.forEach(System.out::println);
+      List<String> getAllCyti = transactions.stream().map(x -> x.getTrader().getCity()).distinct().collect(Collectors.toList());
+      getAllCyti.forEach(System.out::println);
+      List<String> getAllCambridge = transactions
+            .stream()
+            .filter(x -> x.getTrader().getCity().equals("Cambridge"))
+            .sorted(Comparator.comparing(x -> x.getTrader().getName()))
+            .map(x -> x.getTrader().getName())
+            .distinct()
+            .collect(Collectors.toList());
+      getAllCambridge.forEach(System.out::println);
+
+   }
+
+   private static List<Transaction> getExam() {
+      Trader raoul = new Trader("Raoul", "Cambridge");
+      Trader mario = new Trader("Mario", "Milan");
+      Trader alan = new Trader("Alan", "Cambridge");
+      Trader brian = new Trader("Brian", "Cambridge");
+      List<Transaction> transactions = Arrays.asList(new Transaction(brian, 2011, 300), new Transaction(raoul, 2012, 1000),
+            new Transaction(raoul, 2011, 400), new Transaction(mario, 2012, 710), new Transaction(mario, 2012, 700),
+            new Transaction(alan, 2012, 950));
+      return transactions;
+
+   }
 }
