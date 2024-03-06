@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.kp.objects.example.Trader;
@@ -100,7 +101,33 @@ public class Stream {
             .distinct()
             .collect(Collectors.toList());
       getAllCambridge.forEach(System.out::println);
+      System.out.println("------");
+      List<String> getAllNames = transactions
+            .stream()
+            .map(transaction -> transaction.getTrader().getName())
+            .distinct()
+            .sorted()
+            .collect(Collectors.toList());
+      getAllNames.forEach(System.out::println);
 
+      Boolean isMilan = transactions.stream().anyMatch(x -> x.getTrader().getCity().equals("Milan"));
+      System.out.println("------");
+      System.out.println(isMilan);
+      System.out.println("------");
+      List<Integer> listOfValues = transactions
+            .stream()
+            .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+            .map(Transaction::getValue)
+            .collect(Collectors.toList());
+
+      listOfValues.forEach(System.out::println);
+
+      Integer max = transactions.stream().map(Transaction::getValue).reduce(0, Integer::max);
+
+      System.out.println(max);
+      Optional<Transaction> min = transactions.stream().min(Comparator.comparing(Transaction::getValue));
+
+      System.out.println(min);
    }
 
    private static List<Transaction> getExam() {
