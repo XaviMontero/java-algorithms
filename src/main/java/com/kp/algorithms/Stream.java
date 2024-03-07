@@ -81,6 +81,11 @@ public class Stream {
       System.out.println(mul);
       result();
 
+      int getCalories = dishes.stream().mapToInt(Dish::getCalories).sum();
+      System.out.println(getCalories);
+
+      int maxCalories = dishes.stream().mapToInt(Dish::getCalories).max().orElse(1);
+      System.out.println(maxCalories);
    }
 
    private static void result() {
@@ -128,6 +133,8 @@ public class Stream {
       Optional<Transaction> min = transactions.stream().min(Comparator.comparing(Transaction::getValue));
 
       System.out.println(min);
+
+
    }
 
    private static List<Transaction> getExam() {
