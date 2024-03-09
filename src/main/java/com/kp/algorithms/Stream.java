@@ -86,6 +86,10 @@ public class Stream {
 
       int maxCalories = dishes.stream().mapToInt(Dish::getCalories).max().orElse(1);
       System.out.println(maxCalories);
+
+      int[] numbers12 = {2, 3, 5, 7, 11, 13};
+      int sum12 = Arrays.stream(numbers12).sum();
+      System.out.println(sum12);
    }
 
    private static void result() {
