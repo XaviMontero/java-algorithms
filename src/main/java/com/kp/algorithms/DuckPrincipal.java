@@ -9,6 +9,7 @@ public class DuckPrincipal {
       Duck duck = new Duck();
       duck.setFlyBehavior(new Rocket());
       //now this duck can fly with a rocket
+      duck.performFly();
    }
 
 }

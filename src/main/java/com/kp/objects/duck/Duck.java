@@ -36,4 +36,7 @@ public class Duck {
       System.out.println("Quack");
    }
 
+   public void performFly() {
+      flyBehavior.fly();
+   }
 }
