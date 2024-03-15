@@ -1,11 +1,15 @@
 package com.kp.algorithms;
 
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.reducing;
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.kp.objects.restaurant.Dish;
@@ -43,7 +47,11 @@ public class Collector {
       System.out.println(summaryStatistics.getCount());
       System.out.println(summaryStatistics.getSum());
 
+      String join = getListDishe().stream().map(Dish::getName).collect(joining(","));
+      System.out.println(join);
 
+      Optional<Dish> getDish = getListDishe().stream().reduce((b1, b2) -> b1.getCalories() > b2.getCalories() ? b1 : b2);
+      int sumCalories = getListDishe().stream().map(Dish::getCalories).reduce(0, Integer::sum);
    }
 
    private static List<Dish> getListDishe() {
