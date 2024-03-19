@@ -15,6 +15,9 @@ public class Dish {
 
    private Boolean vegetarian;
 
+   private EType type;
+
+
    public static boolean isVegetarian(Dish dish) {
       return dish.getVegetarian();
    }

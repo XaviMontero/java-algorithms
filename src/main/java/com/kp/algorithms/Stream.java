@@ -10,20 +10,24 @@ import java.util.stream.Collectors;
 import com.kp.objects.example.Trader;
 import com.kp.objects.example.Transaction;
 import com.kp.objects.restaurant.Dish;
+import com.kp.objects.restaurant.EType;
 
 public class Stream {
 
    public static void main(String[] args) {
       List<Dish> dishes = new ArrayList<>();
-      dishes.add(new Dish("pork", 800, false));
-      dishes.add(new Dish("beef", 700, false));
-      dishes.add(new Dish("chicken", 400, false));
-      dishes.add(new Dish("french fries", 530, true));
-      dishes.add(new Dish("rice", 350, true));
-      dishes.add(new Dish("season fruit", 120, true));
-      dishes.add(new Dish("pizza", 550, true));
-      dishes.add(new Dish("prawns", 300, false));
-      dishes.add(new Dish("salmon", 450, false));
+      dishes.add(new Dish("pork", 800, false, EType.MEAT));
+      dishes.add(new Dish("beef", 700, false, EType.MEAT));
+      dishes.add(new Dish("chicken", 400, false,   EType.MEAT));
+      dishes.add(new Dish("french fries", 530, true, EType.OTHER));
+      dishes.add(new Dish("rice", 350, true, EType.OTHER));
+      dishes.add(new Dish("season fruit", 120, true, EType.OTHER));
+      dishes.add(new Dish("rice", 350, true, EType.OTHER));
+      dishes.add(new Dish("season fruit", 120, true, EType.OTHER));
+      dishes.add(new Dish("salad", 220, true, EType.OTHER));
+      dishes.add(new Dish("pizza", 550, true, EType.OTHER));
+      dishes.add(new Dish("prawns", 300, false, EType.FISH));
+      dishes.add(new Dish("salmon", 450, false, EType.FISH));
       List<String> dishesLowCalories = dishes
             .stream()
             .filter(dish -> dish.getCalories() < 400)
