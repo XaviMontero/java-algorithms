@@ -1,10 +1,13 @@
 package com.kp.algorithms;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.maxBy;
 import static java.util.stream.Collectors.reducing;
 
 import java.util.ArrayList;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.IntSummaryStatistics;
 import java.util.List;
@@ -60,30 +63,63 @@ public class Collector {
          v.forEach(System.out::println);
       });
 
-      Map<EType2, List<Dish>> filer2 = getListDishe().stream().collect(
-            Collectors.groupingBy(dish -> {
-               if (dish.getCalories() > 500) {
-                  return EType2.FAT;
-               } else if (dish.getCalories() > 400) {
-                  return EType2.GREAT;
-               } else {
-                  return EType2.HEALTY;
-               }
-            })
-      );
-      filer2.forEach((k, v) -> {
+      Map<EType, Optional<Dish>> mostCaloricByType = getListDishe()
+            .stream()
+            .collect(Collectors.groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
+
+      mostCaloricByType.forEach((k, v) -> {
+         System.out.println(k);
+      });
+
+      Map<EType, Dish> getMax = getListDishe()
+            .stream()
+            .collect(Collectors.groupingBy(Dish::getType, collectingAndThen(maxBy(Comparator.comparingInt(Dish::getCalories)), Optional::get)));
+
+      goesToTest();
+
+   }
+
+   private static void goesToTest() {
+
+      System.out.println("======= goesToTest =======");
+
+      Map<Boolean , List<String>> isVegetarian =
+            getListDishe().stream().collect(Collectors.groupingBy(Dish::isVegetarian, Collectors.mapping(Dish::getName, Collectors.toList()) ) );
+
+      isVegetarian.forEach((k, v) -> {
          System.out.println(k);
          v.forEach(System.out::println);
       });
+
+      System.out.println("======= goesToTest 1=======");
+      Map<Boolean, Map<EType, List<Dish>>>
+            par = getListDishe().stream().collect(Collectors.partitioningBy(Dish::isVegetarian, Collectors.groupingBy(Dish::getType)));
+
+      par.forEach((k, v) -> {
+         System.out.println(k);
+         v.forEach((k1, v1) -> {
+            System.out.println(k1);
+            v1.forEach(System.out::println);
+         });
+      });
+
+
    }
+
    public enum EType2 {
-      FAT, GREAT, HEALTY, MEAT, FISH, OTHER
+      FAT,
+      GREAT,
+      HEALTY,
+      MEAT,
+      FISH,
+      OTHER
    }
+
    private static List<Dish> getListDishe() {
       List<Dish> dishes = new ArrayList<>();
       dishes.add(new Dish("pork", 800, false, EType.MEAT));
       dishes.add(new Dish("beef", 700, false, EType.MEAT));
-      dishes.add(new Dish("chicken", 400, false,   EType.MEAT));
+      dishes.add(new Dish("chicken", 400, false, EType.MEAT));
       dishes.add(new Dish("french fries", 530, true, EType.OTHER));
       dishes.add(new Dish("rice", 350, true, EType.OTHER));
       dishes.add(new Dish("season fruit", 120, true, EType.OTHER));
