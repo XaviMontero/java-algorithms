@@ -12,10 +12,9 @@ public class FluxMain {
       Flux<Object> flux = Flux.just(1, "Hola", 3, 4, Util.getFaker().name().fullName(), 6, 8, 9, 10);
 
       flux.subscribe(Util.onNext());
-System.out.println("Filtering only integers");
-      Flux<Integer> flux1 =  flux.filter(Integer.class::isInstance).cast(Integer.class);
+      System.out.println("Filtering only integers");
+      Flux<Integer> flux1 = flux.filter(Integer.class::isInstance).cast(Integer.class);
       flux1.subscribe(Util.onNext());
-
 
    }
 
