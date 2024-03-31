@@ -16,6 +16,10 @@ public class FluxMain {
       Flux<Integer> flux1 = flux.filter(Integer.class::isInstance).cast(Integer.class);
       flux1.subscribe(Util.onNext());
 
+      Flux.interval(java.time.Duration.ofSeconds(1)).subscribe(Util.onNext());
+
+      Util.sleepSeconds(5);
+
    }
 
 }
