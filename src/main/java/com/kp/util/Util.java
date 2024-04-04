@@ -4,14 +4,15 @@ import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Consumer;
 
+import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import com.github.javafaker.Faker;
+import com.kp.objects.DefaultSubscriber;
 
 import jdk.jshell.JShell;
 
 public class Util {
-
 
    public static Faker FAKER = new Faker();
 
@@ -39,4 +40,11 @@ public class Util {
       }
    }
 
+   public static Subscriber<Object> defaultOnSubscribe(String name) {
+      return new DefaultSubscriber(name);
+   }
+
+   public static Subscriber<Object> defaultOnSubscribe() {
+      return new DefaultSubscriber();
+   }
 }
